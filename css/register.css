@@ -8,7 +8,7 @@ body{
 
 .loginbox{
     width: 28rem;
-    height: 28rem;
+    height: 33rem;
     background: #000;
     color: #fff;
     top: 50%;
@@ -24,7 +24,7 @@ body{
     height: 12rem;
     border-radius: 50%;
     position: absolute;
-    top: -35%;
+    top: -30%;
     left: calc(50% - 6rem);
     background-color: darkgray;
 }
