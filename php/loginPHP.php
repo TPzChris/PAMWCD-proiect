@@ -31,7 +31,7 @@ if(isset($_POST['Login']))
     }
 
     $query="select a.name from user_authority ua, authority a where ua.id_authority = a.id_authority and ua.user_id=".$_SESSION['idUser'];
-    
+
     $result=mysqli_query($con,$query);
 
     $roles = array();
