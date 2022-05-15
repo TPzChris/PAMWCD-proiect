@@ -36,16 +36,13 @@ if(isset($_POST['Login']))
 
     $roles = array();
 
-    if($row = mysqli_fetch_assoc($result))
+    while($row = mysqli_fetch_assoc($result))
     {
+        echo $row['name'];
+        echo "BREAK \n";
+
         array_push($roles, $row['name']);
         $flagOK = true;
-    }
-    else
-    {
-        $msg = "Eroare de autentificare";
-        $page = "./../pages/login.php?Invalid=Failed-Auth";
-        phpAlert($msg, $page);
     }
     $_SESSION['roles'] = $roles;
     
