@@ -5,6 +5,7 @@ body {
   .navbar {
     overflow: hidden;
     background-color: #333;
+    border-radius: 10px;
   }
   
   .navbar a {
@@ -36,6 +37,7 @@ body {
   
   .navbar a:hover, .dropdown:hover .dropbtn {
     background-color: red;
+    border-radius: 10px;
   }
   
   .dropdown-content {
@@ -87,6 +89,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 17px;
     border: none;
+    width: 13rem;
   }
   
   .search-container button {
