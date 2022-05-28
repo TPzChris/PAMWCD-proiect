@@ -38,9 +38,6 @@ if(isset($_POST['Login']))
 
     while($row = mysqli_fetch_assoc($result))
     {
-        echo $row['name'];
-        echo "BREAK \n";
-
         array_push($roles, $row['name']);
         $flagOK = true;
     }

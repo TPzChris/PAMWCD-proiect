@@ -21,7 +21,6 @@ if(isset($_POST['Register']))
 
     if($row['userCount'] == 0)
     {
-
         $username = $_POST['username'];
         $pass = $_POST['pass1'];
         $email = $_POST['email'];
