@@ -10,9 +10,7 @@ let resp = (el) => {
     }
     xmlhttp.onreadystatechange=function() {
         if (this.status == 200) {
-            console.log(this.responseText)
             prods = JSON.parse(this.responseText);
-            console.log(el.value)
             if(prods)
             $("#tags").autocomplete({
                 source: prods,
@@ -20,6 +18,6 @@ let resp = (el) => {
             });
         }
     }
-    xmlhttp.open("GET", "./../php/productsPHP.php?prods=display", true);
+    xmlhttp.open("GET", "./../php/prodsSearchPHP.php?prods=display", true);
     xmlhttp.send();
 };
