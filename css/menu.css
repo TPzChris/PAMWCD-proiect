@@ -17,13 +17,13 @@ body {
     text-decoration: none;
   }
   
-  .dropdown {
+  .dropdown-normal {
     float: left;
     padding-right: 6rem;
     overflow: hidden;
   }
   
-  .dropdown .dropbtn {
+  .dropdown-normal .dropbtn {
     font-size: 16px;  
     border: none;
     border-radius: 25px;
@@ -35,7 +35,7 @@ body {
     margin: 0;
   }
   
-  .navbar a:hover, .dropdown:hover .dropbtn {
+  .navbar a:hover, .dropdown-normal:hover .dropbtn {
     background-color: red;
     border-radius: 10px;
   }
@@ -62,7 +62,7 @@ body {
     background-color: #ddd;
   }
   
-  .dropdown:hover .dropdown-content {
+  .dropdown-normal:hover .dropdown-content {
     display: block;
   }
 

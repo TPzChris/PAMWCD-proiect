@@ -11,7 +11,7 @@
 
 
 
-<div class="navbar">
+<div class="navbar-header">
     <a class="home" href="./../pages/home.php">Home</a>
 
     <div class="ui-widget" style="float: left; padding-left: 45%">
@@ -19,7 +19,7 @@
     </div>
 
     <?php if(isset($_SESSION['roles']) && in_array("ROLE_USER", $_SESSION['roles'])){ ?>
-    <div class="dropdown">
+    <div class="dropdown-header">
         <button class="dropbtn"><?php echo $_SESSION['user']; ?> 
             <i class="fa fa-caret-down"></i>
         </button>
@@ -30,15 +30,15 @@
     </div> 
     <?php } ?>
     <?php if(!isset($_SESSION['idUser'])){?>
-    <a href="./../pages/login.php">Autentificare</a>
+    <a class="a-header" href="./../pages/login.php">Autentificare</a>
     <?php } ?>
 
 
     <?php if(isset($_SESSION['roles']) && in_array("ROLE_MARKETING", $_SESSION['roles'])){?>
-    <a href="./../pages/statistics.php">Statistici</a>
+    <a class="a-header" href="./../pages/statistics.php">Statistici</a>
     <?php } ?>
     <?php if(isset($_SESSION['roles']) && in_array("ROLE_ADMIN", $_SESSION['roles'])){?>
-    <a href="./../pages/conturi.php">Administrare conturi</a>
+    <a class="a-header" href="./../pages/conturi.php">Administrare conturi</a>
     <?php } ?>
     
 </div>
