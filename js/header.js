@@ -14,7 +14,7 @@ let resp = (el) => {
             if(prods)
             $("#tags").autocomplete({
                 source: prods,
-                select: (event, ui) => window.location.href = "./../pages/prod.php?prod=" + ui.item.value
+                select: (event, ui) => window.location.href = "./../pages/product.php?prod=" + ui.item.value
             });
         }
     }

@@ -1,0 +1,42 @@
+.main-div {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    display:inline-block;
+    margin-left: 20%;
+}
+
+.filter-div{
+    background-color: black;
+    color: white;
+    height: 50%;
+    width: 34%;  
+    display: inline-flex;  
+    position: absolute;
+    margin-left: 20%;
+}
+
+.parent{
+    width:100%;
+    height: 100%;
+    background-color: lightgray;
+    border-radius: 10px 50px;
+}
+
+.left-div{
+    float:left;
+    width:20rem;
+    margin-top: -1rem;
+}
+
+.right-div{
+    float:right;
+    width:40rem;
+    padding-left: 5%;
+}
+
+.bottom-div{
+    clear: both;
+}
+
+
