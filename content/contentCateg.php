@@ -104,7 +104,7 @@ if(isset($_GET['categ']))
                         <h5 class="card-title"><?php echo $prod['denumire']; ?></h5>
                         <p class="card-text"><?php echo $prod['descriere']; ?></p>
                         <p class="card-footer"><?php echo $prod['pret']; ?> RON</p>
-                        <a href="./../pages/prod.php?id=<?php echo $prod['id_prod']; ?>" class="btn btn-primary">Detalii produs</a>
+                        <a href="./../pages/product.php?prod=<?php echo $prod['denumire']; ?>" class="btn btn-primary">Detalii produs</a>
                         <form method="post" action="./../php/favPHP.php">
                             <button type="submit" name="fav" class="btn btn-<?php echo $likedStatus; ?>" <?php echo $disabled; ?> value="<?php echo $prod['id_prod'].",".$_GET['categ']; ?>">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
@@ -122,7 +122,10 @@ if(isset($_GET['categ']))
 
         <?php if(count($prods) == 0) { ?>
         <div>
-            <h1>Nu există produse în această categorie...</h1>
+        <span style="color: yellow">
+            <i class="fa-solid fa-7x fa-exclamation-triangle"></i>
+        </span>
+        <h1>Nu există produse în această categorie...</h1>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <?php } ?>

@@ -32,6 +32,12 @@ if(isset($_POST['fav']))
     
 }
 
-header("Location: ./../pages/categ.php?categ={$vals[1]}");
+if($vals[1] == '_'){
+    header("Location: ./../pages/product.php?prod={$vals[2]}");
+}else{
+    header("Location: ./../pages/categ.php?categ={$vals[1]}");
+}
+
+
 
 ?>
