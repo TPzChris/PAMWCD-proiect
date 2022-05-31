@@ -9,6 +9,9 @@
 
 
 <?php 
+
+include "./../pojo/categ.php";
+
 $con=mysqli_connect('localhost','root','','pamwcd');
 
 if(!$con){
@@ -17,7 +20,7 @@ if(!$con){
 $msg = "";
 $page = "";
 
-$query="select den from categ";
+$query="select * from categ";
 
 $result=mysqli_query($con,$query);
 
@@ -25,7 +28,10 @@ $res = array();
 
 while($row = mysqli_fetch_assoc($result))
 {
-    array_push($res, $row['den']);
+    $category = new Categ();
+    $category->set_id($row['id_categ']);
+    $category->set_den($row['den']);
+    array_push($res, $category);
 }
 
 
@@ -54,7 +60,7 @@ while($row = mysqli_fetch_assoc($result))
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <?php foreach ($res as $categ){ ?>
-        <a class="dropdown-item" href="deleteCategPHP.php?categ=<?php echo $categ; ?>"><?php echo $categ; ?></a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal_<?php echo $categ->get_id(); ?>"><?php echo $categ->get_den(); ?></a>
         <?php } ?>
     </div>
 </div>
@@ -81,3 +87,30 @@ while($row = mysqli_fetch_assoc($result))
     </div>
 </div>
 
+<?php foreach ($res as $categ){ ?>
+<div class="modal fade" id="exampleModal_<?php echo $categ->get_id(); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificare categorie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="./../php/updateCategPHP.php" method="post">
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Denumire:</label>
+            <input type="text" class="form-control" name="updateCateg" id="recipient-name" value="<?php echo $categ->get_den(); ?>">
+            <input type="hidden" name="categId" value="<?php echo $categ->get_id(); ?>">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anulează</button>
+        <button type="submit button" class="btn btn-primary">Confirmă</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php } ?>
