@@ -12,12 +12,20 @@
 
 <script>
 
-let showImage = (event) => {
+let showImageInsert = (event) => {
     var image = document.getElementById('imageProd');
 	image.src = URL.createObjectURL(event.target.files[0]);
     image.value = URL.createObjectURL(event.target.files[0]);
     document.getElementById('imgTypeProd').value= event.target.files[0].type;
     console.table(document.getElementById('imgFileProd'));
+}
+
+let showImageUpdate = (event, idProd) => {
+    var image = document.getElementById('imageProdUpdate_' + idProd);
+	image.src = URL.createObjectURL(event.target.files[0]);
+    image.value = URL.createObjectURL(event.target.files[0]);
+    document.getElementById('imgTypeProdUpdate_' + idProd).value= event.target.files[0].type;
+    console.table(document.getElementById('imgFileProdUpdate_' + idProd));
 }
 
 </script>
@@ -49,8 +57,20 @@ if(isset($_GET['categ']))
         array_push($prods, $row);
     }
 }
+?>
 
-
+<?php
+if(isset($_SESSION['error'])){
+?>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <h3><?php echo $_SESSION['error']; ?></h3>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div> 
+<?php     
+    unset($_SESSION['error']);
+}
 ?>
 
 
@@ -87,7 +107,7 @@ if(isset($_GET['categ']))
                             <label for="dataProd" class="col-form-label">Data apariției:</label>
                             <input type="date" class="form-control" name="updateProdData" id="dataProd">
                             <label for="imageProd" class="col-form-label">Imagine:</label>
-                            <input type="file" class="col-form-btn" name="updateProdImgFile" id="imgFileProd" onchange="showImage(event)">
+                            <input type="file" class="col-form-btn" name="updateProdImgFile" id="imgFileProd" onchange="showImageInsert(event)">
                             <input type="image" class="form-control" name="updateProdImg" id="imageProd">
                             <label for="descProd" class="col-form-label">Descriere:</label>
                             <input type="text" class="form-control" name="updateProdDesc" id="descProd">
@@ -174,19 +194,17 @@ if(isset($_GET['categ']))
                         <?php if(isset($_SESSION['roles']) && in_array("ROLE_ADMIN", $_SESSION['roles'])){?>
 
 
-                        <form method="delete" action="./../php/deleteProdPHP.php">
-                            <button type="submit" name="delete" class="btn btn-danger" value="<?php echo $prod['id_prod']; ?>">
-                                <i class="fa fa-x" aria-hidden="true"></i>
-                            </button>
-                        </form>
+                        
+                        <button type="submit" name="delete" class="btn btn-danger" value="<?php echo $prod['id_prod']; ?>" data-toggle="modal" data-target="#deleteModal_<?php echo $prod['id_prod']; ?>">
+                            <i class="fa fa-x" aria-hidden="true"></i>
+                        </button>
+                        <br>
 
-                        <!-- <form method="patch" action="./../php/updateProdPHP.php"> -->
-                            <button type="submit" name="update" class="btn btn-primary" value="<?php echo $prod['id_prod']; ?>" data-toggle="modal" data-target="#updateModal">
-                                <i class="fa fa-refresh" aria-hidden="true"></i>
-                            </button>
-                        <!-- </form> -->
+                        <button type="submit" name="update" class="btn btn-primary" value="<?php echo $prod['id_prod']; ?>" data-toggle="modal" data-target="#updateModal_<?php echo $prod['id_prod']; ?>">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                        </button>
 
-                        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="updateModal_<?php echo $prod['id_prod']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -195,7 +213,7 @@ if(isset($_GET['categ']))
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="./../php/updateProdPHP.php" method="patch">
+                                    <form action="./../php/updateProdPHP.php" method="post" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="denProd" class="col-form-label">Denumire:</label>
@@ -209,43 +227,46 @@ if(isset($_GET['categ']))
                                                 <label for="dataProd" class="col-form-label">Data apariției:</label>
                                                 <input type="date" class="form-control" name="updateProdData" id="dataProd" value="<?php echo $prod['data_aparitiei']; ?>">
                                                 <label for="imageProd" class="col-form-label">Imagine:</label>
-                                                <input type="file" class="col-form-btn" name="updateProdImgFile" id="imgFileProd" onchange="showImage(event)">
-                                                <input type="image" class="form-control" name="updateProdImg" id="imageProd" src="data:image/<?php echo $prod['imagine_content_type']; ?>;base64,<?php echo base64_encode($prod['imagine']) ?>">
+                                                <input type="file" class="col-form-btn" name="updateProdImgFile" id="imgFileProdUpdate_<?php echo $prod['id_prod']; ?>" onchange="showImageUpdate(event, <?php echo $prod['id_prod']; ?>)">
+                                                <input type="image" class="form-control" name="updateProdImg" id="imageProdUpdate_<?php echo $prod['id_prod']; ?>" src="data:image/<?php echo $prod['imagine_content_type']; ?>;base64,<?php echo base64_encode($prod['imagine']) ?>">
                                                 <label for="descProd" class="col-form-label">Descriere:</label>
                                                 <input type="text" class="form-control" name="updateProdDesc" id="descProd" value="<?php echo $prod['descriere']; ?>">
-                                                <input type="hidden" name="prodId" value="<?php echo $prod['id_prod']; ?>">
+                                                <input type="hidden" name="updateProdId" value="<?php echo $prod['id_prod']; ?>">
+                                                <input type="hidden" name="updateProdImgType" id="imgTypeProdUpdate_<?php echo $prod['id_prod']; ?>" value="<?php echo $prod['imagine_content_type']; ?>">
+                                                <input type="hidden" name="updateProdCateg" id="categProd" value="<?php echo $_GET['categ'] ?>">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Anulează</button>
-                                            <button type="submit button" class="btn btn-primary">Confirmă</button>
+                                            <button type="submit button" class="btn btn-primary" name="submitUpdate">Confirmă</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- <div class="dropdown show">
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-refresh" aria-hidden="true"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal_<?php echo $prod['id_prod']; ?>"><?php echo $prod['denumire']; ?></a>
+                        <div class="modal fade" id="deleteModal_<?php echo $prod['id_prod']; ?>" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Ștergere produs</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Sigur dorești să ștergi produsul cu denumirea <span style="color: red"><?php echo $prod['denumire']; ?></span>? </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form method="post" action="./../php/deleteProdPHP.php">
+                                            <input type="hidden" name="deleteProdId" value="<?php echo $prod['id_prod']; ?>">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Anulare</button>
+                                            <button type="button submit" name="submitDelete" class="btn btn-danger">Confirm</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form action="./../php/insertProdPHP.php" method="post">
-                                    <input type=text class="dropdown-item custom-submit" name="newCateg">
-                                </form>   
-                            </div>
-                        </div> -->
 
                         <?php } ?>
 
