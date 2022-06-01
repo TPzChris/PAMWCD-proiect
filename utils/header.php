@@ -39,7 +39,7 @@
     <a class="a-header" href="./../pages/statistics.php">Statistici</a>
     <?php } ?>
     <?php if(isset($_SESSION['roles']) && in_array("ROLE_ADMIN", $_SESSION['roles'])){?>
-    <a class="a-header" href="./../pages/conturi.php">Administrare conturi</a>
+    <a class="a-header" href="./../pages/admin.php">Administrare conturi</a>
     <?php } ?>
     
 </div>

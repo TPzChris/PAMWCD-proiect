@@ -133,30 +133,7 @@ if(isset($_SESSION['error'])){
     <div class="main-div">
 
         <?php foreach($prods as $prod){ ?>
-        <!-- <div class="container">
-            <div class="item-list">
-                <div class="item item-1">
-                <div class="img"><a href="javascript:;">
-                    <div class="like"><i class="fa fa-heart" aria-hidden="true"></i></div></a>
-                    <div class="img-content"></div>
-                </div>
-                <div class="social"><a href="javascript:;">
-                    <div class="text-container">
-                        <h2 class="title"><?php echo $prod['denumire']; ?></h2>
-                        <div class="content">
-                        <p><?php echo $prod['descriere']; ?></p>
-                        </div>
-                        <div class="readmore">
-                        <h3>Mai mult</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <?php
-
-
-
         $likedStatus = "danger"; 
         if(!(isset($_SESSION['roles']) && count($_SESSION['roles']) > 0)){
             $disabled = "disabled"; 
