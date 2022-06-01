@@ -12,8 +12,6 @@ if(isset($_POST['updateCateg']))
 {
 
     $query="update categ set den = '{$_POST['updateCateg']}' where id_categ = {$_POST['categId']}";
-    
-    echo $query;
 
     mysqli_query($con, $query);
     
