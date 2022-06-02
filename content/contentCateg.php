@@ -182,7 +182,7 @@ if(isset($_SESSION['error'])){
         <div class="row">
             <div class="col">
                 <div class="card" style="width: 22rem;">
-                    <img class="card-img-top" src="data:image/<?php echo $prod['imagine_content_type']; ?>;base64,<?php echo base64_encode($prod['imagine']) ?>" height="200rem" width="relative" alt="Card image cap">
+                    <img class="card-img-top my-image" src="data:image/<?php echo $prod['imagine_content_type']; ?>;base64,<?php echo base64_encode($prod['imagine']) ?>" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $prod['denumire']; ?></h5>
                         <p class="card-text"><?php echo $prod['descriere']; ?></p>

@@ -96,11 +96,11 @@ if(isset($_GET['prod']))
   <div class="parent">
     <hr>
     <div class="left-div">
-      <img class="card-img-top" src="data:image/<?php echo $row['imagine_content_type']; ?>;base64,<?php echo base64_encode($row['imagine']) ?>" height="200rem" width="relative" alt="Card image cap">
+      <img class="card-img-top my-image" src="data:image/<?php echo $row['imagine_content_type']; ?>;base64,<?php echo base64_encode($row['imagine']) ?>" alt="Card image cap">
     </div>
     <div class="right-div">
       <h3>Producător: <?php echo $row['producator']; ?></h3>
-      <h3>Preț: <?php echo $row['pret']; ?></h3>
+      <h3>Preț: <?php echo $row['pret']; ?> RON</h3> 
       <h3>Stoc: <?php echo $row['stoc']; ?></h3>
       <h3>Data apariției: <?php echo $row['data_aparitiei']; ?></h3>
     </div>

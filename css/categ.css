@@ -16,4 +16,9 @@
     margin-left: 20%;
 }
 
+.my-image {
+    width: auto;
+    height: 14rem;
+    object-fit: contain;
+}
 

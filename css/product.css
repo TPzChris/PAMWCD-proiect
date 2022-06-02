@@ -39,4 +39,10 @@
     clear: both;
 }
 
+.my-image {
+    width: auto;
+    height: 28rem;
+    object-fit: contain;
+}
+
 

@@ -54,7 +54,7 @@ while($row = mysqli_fetch_assoc($result))
 <?php if(isset($_SESSION['roles']) && in_array("ROLE_ADMIN", $_SESSION['roles'])){?>
 
 <div class="dropdown show">
-    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block">
         <i class="fa fa-refresh" aria-hidden="true"></i>
     </a>
 
