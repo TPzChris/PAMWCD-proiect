@@ -77,6 +77,32 @@ if(isset($_SESSION['error'])){
 
 <body style="background-color: #717171;">
 
+<?php
+    if(isset($_GET['categ']))
+    {
+        $query="select count(1) as count from categ c
+        where c.den = '{$_GET['categ']}'";
+    
+        $result=mysqli_query($con,$query);
+    
+        $count = mysqli_fetch_assoc($result);
+    }    
+    if($count['count'] == 0){
+?>
+    <div class="main-div">
+        <div>
+        <span style="color: yellow">
+            <i class="fa-solid fa-7x fa-exclamation-triangle"></i>
+        </span>
+        <h1>Această categorie nu există...</h1>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div> 
+<?php
+    }else {
+?>
+
+
     <div style="margin-left: 20%;">
         <h2><?php echo $_GET['categ']; ?></h2>
         <?php if(isset($_SESSION['roles']) && in_array("ROLE_ADMIN", $_SESSION['roles'])){?>
@@ -277,7 +303,7 @@ if(isset($_SESSION['error'])){
             <button type="submit" name="order" class="btn btn-secondary" value="desc">Descendent</button>
         </form>
     </div> 
-    <?php } 
+    <?php } }
     unset($_POST['fav']);
     mysqli_close($con);
 

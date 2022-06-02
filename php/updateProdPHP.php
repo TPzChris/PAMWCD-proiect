@@ -8,7 +8,7 @@ if(!$con){
 $msg = "";
 $page = "";
 session_start();
-if(isset($_POST['submitUpdate']))
+if(isset($_POST['submitUpdate']) || isset($_POST['submitUpdateFromProdPage']))
 {
     $queryString = "";
     if(!empty($_FILES['updateProdImgFile']['tmp_name']) && file_exists($_FILES['updateProdImgFile']['tmp_name'])){
@@ -38,8 +38,11 @@ if(isset($_POST['submitUpdate']))
     }
     
 }
-
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    if(isset($_POST['submitUpdateFromProdPage'])){
+        header("Location:./../pages/product.php?prod={$_POST['updateProdDen']}");
+    }else{
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 
     mysqli_close($con);
 
