@@ -25,7 +25,7 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-            <a href="./../pages/cont.php">Contul meu</a>
+            <a href="./../pages/account.php?id=<?php echo $_SESSION['idUser']; ?>">Contul meu</a>
             <a href="./../php/logoutPHP.php">Logout</a>
         </div>
     </div> 

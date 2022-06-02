@@ -39,9 +39,7 @@ if(isset($_POST['submitRoleChange']))
         echo $_SESSION['error'];
     }
 
-    $_SESSION['roles'] = null;
-
-    //header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 ?>

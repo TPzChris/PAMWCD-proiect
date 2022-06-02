@@ -19,7 +19,7 @@ if(isset($_POST['newCateg']))
     
 }
 
-    header("Location: ./../pages/home.php");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 
     mysqli_close($con);
 

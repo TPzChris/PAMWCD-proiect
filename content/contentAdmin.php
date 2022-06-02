@@ -90,7 +90,7 @@ if(isset($_SESSION['error'])){
           
           <div class="card w-100" style="width: 20rem;">
             <div class="card-body">
-              <h2 class="card-title"><?php echo $user->get_name(); ?></h2>
+              <h2 class="card-title"><a href="./../pages/account.php?id=<?php echo $user->get_id(); ?>" style="text-decoration: none; color: inherit;"><?php echo $user->get_name(); ?></a></h2>
               <p class="card-text"><?php echo $user->get_email(); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               <button type="button" class="btn btn-warning" style="display: inline-block">User</button>
               <form method="post" action="./../php/changeRolePHP.php" style="display: inline-block">
