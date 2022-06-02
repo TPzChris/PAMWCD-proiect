@@ -70,7 +70,7 @@ if(isset($_SESSION['error'])){
 
         <div style="margin-left: 20%;">
             <h1>E-mail: </h1><h2><?php echo $user->get_email(); ?></h2><br><br><br>
-            <h1>Roles: </h1>
+            <h1>Roluri: </h1>
             <button type="button" class="btn btn-warning" style="display: inline-block">User</button>
             <?php if(isset($_SESSION['roles']) && in_array("ROLE_ADMIN", $_SESSION['roles'])){ ?>
             <form method="post" action="./../php/changeRolePHP.php" style="display: inline-block">
